@@ -1,4 +1,3 @@
-﻿
 #include <stdio.h> 
 #include <malloc.h> 
 #include <stdbool.h>
@@ -14,6 +13,28 @@ long long int pow(unsigned long long base, unsigned long long int exp, unsigned 
 
     return res;
 }
+
+
+void test_fermat(int n) {
+    int  dig= 0, num = 0;
+    for (int i = 1; i < n; i++) {
+        if (pow(i, n - 1, n) == 1) {
+            dig+=1;
+        }
+        else {
+            num+=1;
+        }
+    }
+    printf("Fermat test: ");
+    if (num == 0) {
+        printf("True ");
+    }
+    else {
+        printf("False ");
+    }
+    printf("%d %d\n", num, dig);
+} 
+
 void miller_rabin(int n) {
     int s = 0, d = 0, c = n;
     int one = 0, two = 0, count = 0;
@@ -58,28 +79,10 @@ void miller_rabin(int n) {
     }
     printf("%d %d %d\n", count, one, two);
 }
-void test_fermat(int n) {
-    int  dig= 0, num = 0;
-    for (int i = 1; i < n; i++) {
-        if (pow(i, n - 1, n) == 1) {
-            dig+=1;
-        }
-        else {
-            num+=1;
-        }
-    }
-    printf("Fermat test: ");
-    if (num == 0) {
-        printf("True ");
-    }
-    else {
-        printf("False ");
-    }
-    printf("%d %d\n", num, dig);
-}
+
 int main() {
     int n = 0;
-    scanf_s("%d", &n);
+    scanf("%d", &n);
     miller_rabin(n);
     test_fermat(n);
 }
